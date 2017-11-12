@@ -1,3 +1,12 @@
+<div>
+    <button ng-click="ctrl.openFormTrigger()">Create author</button>
+</div>
+<div ng-if="ctrl.openForm">
+    <input placeholder="name" ng-model="ctrl.newName">
+    <input placeholder="surname" ng-model="ctrl.newSname">
+    <input type="date" ng-model="ctrl.newDate">
+    <button ng-click="ctrl.create()">Create</button>
+</div>
 <h3>Books</h3>
 <div>
     <p>Authors search:</p>

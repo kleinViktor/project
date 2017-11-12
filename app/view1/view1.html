@@ -10,12 +10,12 @@
 <h3>Books</h3>
 <div>
     <p>Authors search:</p>
-    <input ng-model="ctrl.authorNameSearch" ng-change="ctrl.startSearch(event)">
+    <input ng-model="ctrl.searchValue" ng-change="ctrl.startSearch(event)">
 </div>
 <div>
     <ul>
-        <li>
-
+        <li ng-repeat="findAuthors in ctrl.searchResults">
+            {{findAuthors}}
         </li>
     </ul>
 </div>

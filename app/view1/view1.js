@@ -12,17 +12,18 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
 
     .controller('View1Ctrl', function (userService) {
         var vm = this;
-        var testRE = new RegExp('([a-zA-Z0-9]){4}');
+        var testRE = new RegExp('([a-zA-Z0-9]){1}'); // TODO check symbols count std: 4
 
         activate();
 
-        vm.authorNameSearch = '';
-
+        vm.searchValue = '';
+        vm.searchResults = [];
         vm.startSearch = function (event) {
-            if (testRE.test(vm.authorNameSearch)) {
-                alert('aaa!');
+            if (testRE.test(vm.searchValue)) {
+                vm.searchResults = userService.searchAuthor(vm.searchValue);
             }
         };
+
         vm.newName = '';
         vm.newSname = '';
         vm.newDate = '';
@@ -52,7 +53,9 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
     .factory('userService', function ($localStorage) {
         var service = {
             initStorage: initStorage,
-            createAuthor: createAuthor
+            createAuthor: createAuthor,
+            createBook: createBook,
+            searchAuthor: searchAuthor
         };
 
         return service;
@@ -61,7 +64,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
             $localStorage.authors = $localStorage.authors || [];
             $localStorage.books = $localStorage.books || [];
             $localStorage.authorId = $localStorage.authorId || $localStorage.authors.length;
-            $localStorage.bookId = $localStorage.bookId || $localStorage.books.length;
+            $localStorage.booksId = $localStorage.booksId || $localStorage.books.length;
         }
 
         function createAuthor(name, sname, date, books) {
@@ -81,5 +84,39 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
 
             $localStorage.authors.push(author);
 
+        }
+
+        function createBook(name, style, pages, authorId) {
+            var book = {};
+
+            book.name = name;
+            book.style = style;
+            book.pages = pages || 0;
+            book.author = authorId;
+            book.id = createId();
+
+            function createId() {
+                var id = $localStorage.booksId;
+                $localStorage.booksId = $localStorage.booksId + 1;
+                return id;
+            }
+
+            $localStorage.books.push(book);
+
+        }
+
+        function searchAuthor(param) {
+            console.log(param);
+            var searchReg;
+            return $localStorage.authors.filter(function (item) {
+                if (/[0-9]+/.test(param)) {
+                    searchReg = new RegExp(param, 'gi');
+                    return searchReg.test(item.id);
+                }
+                if (/[a-zA-Z]+/.test(param)) {
+                    searchReg = new RegExp(param, 'gi');
+                    return searchReg.test(item.name) || searchReg.test(item.sname);
+                }
+            });
         }
     });

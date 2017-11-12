@@ -1,11 +1,8 @@
 logs/
 node_modules/
-
-bower_components/
-
+app/bower_components/
 tmp
 .DS_Store
-
 .idea
 e2e-tests/
-npm-debug
+npm-debug.log

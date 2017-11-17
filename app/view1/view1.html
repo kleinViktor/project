@@ -7,14 +7,15 @@
     <div class="search-field">
         <ul>
             <li ng-repeat="findAuthors in ctrl.searchResults">
-                <div ng-click="ctrl.editAuthor(findAuthors)">{{findAuthors.name}} {{findAuthors.sname}} ID:
-                    {{findAuthors.id}}
-                </div>
+                <div ng-click="ctrl.editAuthor(findAuthors)">{{findAuthors.name}} {{findAuthors.sname}} ID: {{findAuthors.id}}</div>
             </li>
         </ul>
     </div>
     <div class="user-edit">
-        <div ng-if="ctrl.openForm">
+        <div>
+            <button ng-click="ctrl.initCreateForm()">Create author</button>
+        </div>
+        <div>
             <p>
                 <input placeholder="name" ng-model="ctrl.newName">
             </p>

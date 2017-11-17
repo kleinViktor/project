@@ -18,6 +18,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
 
         vm.searchValue = '';
         vm.searchResults = [];
+        vm.initCreateForm = initCreateForm;
         vm.startSearch = function (event) {
             if (testRE.test(vm.searchValue)) {
                 vm.searchResults = userService.searchAuthor(vm.searchValue);
@@ -34,11 +35,6 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
             userService.createAuthor(vm.newName, vm.newSname, vm.newDate, vm.newUserBooks, vm.updateUserID);
             vm.updateUserID = undefined;
             initCreateForm();
-        };
-
-        vm.openForm = false;
-        vm.openFormTrigger = function () {
-            vm.openForm = !vm.openForm;
         };
 
         vm.editAuthor = function (author) {

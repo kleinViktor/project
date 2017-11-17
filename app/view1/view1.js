@@ -24,17 +24,29 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
             }
         };
 
+        vm.createMode = true;
+
         vm.newName = '';
         vm.newSname = '';
         vm.newDate = '';
+        vm.newUserBooks = [];
         vm.create = function () {
-            userService.createAuthor(vm.newName, vm.newSname, vm.newDate);
+            userService.createAuthor(vm.newName, vm.newSname, vm.newDate, vm.newUserBooks, vm.updateUserID);
+            vm.updateUserID = undefined;
             initCreateForm();
         };
 
         vm.openForm = false;
         vm.openFormTrigger = function () {
             vm.openForm = !vm.openForm;
+        };
+
+        vm.editAuthor = function (author) {
+            vm.createMode = false;
+            vm.newName = author.name;
+            vm.newSname = author.sname;
+            vm.newDate = new Date(author.date);
+            vm.updateUserID = author.id;
         };
 
         function activate() {
@@ -46,6 +58,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
             vm.newName = '';
             vm.newSname = '';
             vm.newDate = '';
+            vm.newUserBooks = [];
         }
 
     })
@@ -63,26 +76,37 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
         function initStorage() {
             $localStorage.authors = $localStorage.authors || [];
             $localStorage.books = $localStorage.books || [];
-            $localStorage.authorId = $localStorage.authorId || $localStorage.authors.length;
-            $localStorage.booksId = $localStorage.booksId || $localStorage.books.length;
+            $localStorage.authorId = $localStorage.authorId || $localStorage.authors.length + 1;
+            $localStorage.booksId = $localStorage.booksId || $localStorage.books.length + 1;
         }
 
-        function createAuthor(name, sname, date, books) {
+        function createAuthor(name, sname, date, books, id) {
             var author = {};
 
-            author.name = name;
-            author.sname = sname;
-            author.date = date;
-            author.books = books || [];
-            author.id = createId();
-
+            
+            if(id){
+                $localStorage.authors.forEach(function (item) {
+                   if(item.id === id){
+                       item.name = name;
+                       item.sname = sname;
+                       item.date = date;
+                       item.books = books || [];
+                   } 
+                });
+            } else {
+                author.name = name;
+                author.sname = sname;
+                author.date = date;
+                author.books = books || [];
+                author.id = createId();
+                $localStorage.authors.push(author);
+            }
+            
             function createId() {
                 var id = $localStorage.authorId;
                 $localStorage.authorId = $localStorage.authorId + 1;
                 return id;
             }
-
-            $localStorage.authors.push(author);
 
         }
 
@@ -106,7 +130,6 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
         }
 
         function searchAuthor(param) {
-            console.log(param);
             var searchReg;
             return $localStorage.authors.filter(function (item) {
                 if (/[0-9]+/.test(param)) {

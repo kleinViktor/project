@@ -1,21 +1,28 @@
-<div>
-    <button ng-click="ctrl.openFormTrigger()">Create author</button>
-</div>
-<div ng-if="ctrl.openForm">
-    <input placeholder="name" ng-model="ctrl.newName">
-    <input placeholder="surname" ng-model="ctrl.newSname">
-    <input type="date" ng-model="ctrl.newDate">
-    <button ng-click="ctrl.create()">Create</button>
-</div>
 <h3>Books</h3>
 <div>
     <p>Authors search:</p>
     <input ng-model="ctrl.searchValue" ng-change="ctrl.startSearch(event)">
 </div>
 <div>
-    <ul>
-        <li ng-repeat="findAuthors in ctrl.searchResults">
-            {{findAuthors}}
-        </li>
-    </ul>
+    <div class="search-field">
+        <ul>
+            <li ng-repeat="findAuthors in ctrl.searchResults">
+                <div ng-click="ctrl.editAuthor(findAuthors)">{{findAuthors.name}} {{findAuthors.sname}} ID: {{findAuthors.id}}</div>
+            </li>
+        </ul>
+    </div>
+    <div class="user-edit">
+        <div ng-if="ctrl.openForm">
+            <p>
+                <input placeholder="name" ng-model="ctrl.newName">
+            </p>
+            <p>
+                <input placeholder="surname" ng-model="ctrl.newSname">
+            </p>
+            <p>
+                <input type="date" ng-model="ctrl.newDate">
+            </p>
+            <button ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
+        </div>
+    </div>
 </div>

@@ -83,15 +83,15 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
         function createAuthor(name, sname, date, books, id) {
             var author = {};
 
-            
-            if(id){
+
+            if (id) {
                 $localStorage.authors.forEach(function (item) {
-                   if(item.id === id){
-                       item.name = name;
-                       item.sname = sname;
-                       item.date = date;
-                       item.books = books || [];
-                   } 
+                    if (item.id === id) {
+                        item.name = name;
+                        item.sname = sname;
+                        item.date = date;
+                        item.books = books || [];
+                    }
                 });
             } else {
                 author.name = name;
@@ -101,7 +101,7 @@ angular.module('myApp.view1', ['ngRoute', 'ngStorage'])
                 author.id = createId();
                 $localStorage.authors.push(author);
             }
-            
+
             function createId() {
                 var id = $localStorage.authorId;
                 $localStorage.authorId = $localStorage.authorId + 1;

@@ -77,12 +77,25 @@ footer {
     padding: 15px;
 }
 
-.search-field {
+.search {
     float: left;
     width: 50%;
 }
 
-.user-edit {
+.edit {
     float: right;
-    width: 50%;
+    width: 40%;
+}
+
+input {
+    width: 400px;
+}
+
+.area {
+    height: 400px;
+    width: 100%;
+}
+
+li {
+    cursor: pointer;
 }

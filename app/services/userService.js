@@ -63,9 +63,9 @@ angular
                 $localStorage.books.forEach(function (item) {
                     if (item.id === id) {
                         item.name = name;
-                        item.sname = sname;
-                        item.date = date;
-                        item.books = books || [];
+                        item.style = style;
+                        item.pages = pages || 0;
+                        item.author = authorId;
                     }
                 });
             } else {

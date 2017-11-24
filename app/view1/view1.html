@@ -38,7 +38,7 @@
     </div>
     <div class="search">
         <ul>
-            <li ng-repeat="findBooks in ctrl.searchResults">
+            <li ng-repeat="findBooks in ctrl.searchBookResults">
                 <div ng-click="ctrl.editBook(findBooks)">{{findBooks.name}} {{findBooks.sname}} ID: {{findBooks.id}}</div>
             </li>
         </ul>
@@ -52,7 +52,18 @@
                 <input placeholder="name" ng-model="ctrl.newBookName">
             </p>
             <p>
-                <input placeholder="style" ng-model="ctrl.newBookStyle">
+                <select placeholder="style" ng-model="ctrl.newBookStyle">
+                    <option value="fantasy">
+                        Fantasy
+                    </option>
+                    <option value="comedy">
+                        Comedy
+                    </option>
+                    <option value="drame">
+                        Drama
+                    </option>
+
+                </select>
             </p>
             <p>
                 <input type="number" placeholder="pages" a ng-model="ctrl.newBookPages">
@@ -60,7 +71,7 @@
             <p>
                 <input type="number" placeholder="author ID" a ng-model="ctrl.newBookAuthorId">
             </p>
-            <button ng-click="ctrl.create()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
+            <button ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
         </div>
     </div>
 </div>

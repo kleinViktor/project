@@ -8,16 +8,29 @@ angular
 
         activate();
 
+        function activate() {
+            userService.initStorage();
+            initCreateForm();
+            initCreateBookForm();
+        }
+
         vm.searchValue = '';
         vm.searchResults = userService.getAllAuthors();
         vm.initCreateForm = initCreateForm;
-        vm.startSearch = function (event) {
+        vm.startSearch = function () {
             if (testRE.test(vm.searchValue) || !isNaN(vm.searchValue)) {
                 vm.searchResults = userService.searchAuthor(vm.searchValue);
             }
         };
 
+        vm.searchBook = '';
+        vm.searchBookResults = [];
+        vm.startSearchBook = function () {
+            vm.searchBookResults = userService.searchBook(vm.searchBook);
+        };
+
         vm.createMode = true;
+        vm.createBookMode = true;
 
         vm.newName = '';
         vm.newSname = '';
@@ -29,6 +42,12 @@ angular
             initCreateForm();
         };
 
+        vm.createBook = function () {
+            userService.createBook(vm.newBookName, vm.newBookStyle, vm.newBookPages, vm.newBookAuthorId, vm.updateBookID);
+            vm.updateBookID = undefined;
+            initCreateBookForm();
+        };
+
         vm.editAuthor = function (author) {
             vm.createMode = false;
             vm.newName = author.name;
@@ -37,10 +56,14 @@ angular
             vm.updateUserID = author.id;
         };
 
-        function activate() {
-            userService.initStorage();
-            initCreateForm();
-        }
+        vm.editBook = function (book) {
+            vm.createBookMode = false;
+            vm.newBookName = book.name;
+            vm.newBookStyle = book.style;
+            vm.newBookPages = book.pages;
+            vm.newBookAuthorId = book.author;
+            vm.updateBookID = book.id;
+        };
 
         function initCreateForm() {
             vm.createMode = true;
@@ -49,6 +72,15 @@ angular
             vm.newDate = '';
             vm.newUserBooks = [];
             vm.updateUserID = undefined;
+        }
+
+        function initCreateBookForm() {
+            vm.createBookMode = true;
+            vm.newBookName = '';
+            vm.newBookStyle = '';
+            vm.newBookPages = '';
+            vm.newBookAuthorId = undefined;
+            vm.updateBookID = undefined;
         }
 
     });

@@ -1,115 +1,116 @@
-﻿body {
-    background-color: #cccccc;
-    font-family: Arial, Sans-Serif;
-    margin: 0px auto;
-    width: 1000px;
-    height: 1000px;
-    border: solid 4px purple;
-    /*display:block;*/
-}
-.img-container{
-    width: auto;
-    height:300px;
-}
-header {
-    display: block;
-    background-color: white;
-    color: rgb(250, 56, 56);
-    height: 85px;
-    text-align: center;
-}
-
-section {
-    display: inline;
-    margin-top: 20px;
-    /* background-color: gold ;rgb(39, 225, 250)*/
+﻿/*body {*/
+    /*background-color: #cccccc;*/
+    /*font-family: Arial, Sans-Serif;*/
+    /*margin: 0px auto;*/
+    /*width: 1000px;*/
+    /*height: 1000px;*/
+    /*border: solid 4px purple;*/
+    /*!*display:block;*!*/
+/*}*/
+/*.img-container{*/
+    /*width: auto;*/
+    /*height:300px;*/
+/*}*/
+/*header {*/
+    /*display: block;*/
+    /*background-color: white;*/
     /*color: rgb(250, 56, 56);*/
-    /* width: 670px;
-      height: 600px;*/
+    /*height: 85px;*/
+    /*text-align: center;*/
+/*}*/
+
+/*section {*/
+    /*display: inline;*/
+    /*margin-top: 20px;*/
+    /*!* background-color: gold ;rgb(39, 225, 250)*!*/
+    /*!*color: rgb(250, 56, 56);*!*/
+    /*!* width: 670px;*/
+      /*height: 600px;*!*/
 
 
-}
-h1 {
-display: block;
-color: rgb(250, 56, 56);
-background: none;
-text-align: center;
+/*}*/
+/*h1 {*/
+/*display: block;*/
+/*color: rgb(250, 56, 56);*/
+/*background: none;*/
+/*text-align: center;*/
 
-}
+/*}*/
 
-h3 {
-color: rgb(250, 56, 56);
-text-align: center;
-}
+/*h3 {*/
+/*color: rgb(250, 56, 56);*/
+/*text-align: center;*/
+/*}*/
 
-nav {
-width: 15%;
-float: left;
-color: rgb(250, 56, 56);
-}
+/*nav {*/
+/*width: 15%;*/
+/*float: left;*/
+/*color: rgb(250, 56, 56);*/
+/*}*/
 
-nav a:link, nav a:visited {
-display: block;
-font-weight: bold;
-padding: 10px;
-text-decoration: none;
-margin: 5px;
-}
+/*nav a:link, nav a:visited {*/
+/*display: block;*/
+/*font-weight: bold;*/
+/*padding: 10px;*/
+/*text-decoration: none;*/
+/*margin: 5px;*/
+/*}*/
 
-nav a:hover {
-color: rgb(250, 56, 56);
-background-color: rgb(6, 252, 100);
-}
+/*nav a:hover {*/
+/*color: rgb(250, 56, 56);*/
+/*background-color: rgb(6, 252, 100);*/
+/*}*/
 
-section {
-display: block;
-width: 45%;
-float: left;
-margin: 10px;
-}
+/*section {*/
+/*display: block;*/
+/*width: 45%;*/
+/*float: left;*/
+/*margin: 10px;*/
+/*}*/
 
-article p {
-margin: 10px;
-}
+/*article p {*/
+/*margin: 10px;*/
+/*}*/
 
-aside {
-float: right;
-width: 25%;
+/*aside {*/
+/*float: right;*/
+/*width: 25%;*/
 
-}
+/*}*/
 
-aside p {
-margin: 15px;
+/*aside p {*/
+/*margin: 15px;*/
 
-}
+/*}*/
 
-footer {
-clear: both;
-color: black;
-background-color: rgb(250, 56, 56);
-text-align: center;
-padding: 15px;
-}
+/*footer {*/
+/*clear: both;*/
+/*color: black;*/
+/*background-color: rgb(250, 56, 56);*/
+/*text-align: center;*/
+/*padding: 15px;*/
+/*}*/
 
-.search-field {
-float: left;
-width: 50%;
-}
+/*.search-field {*/
+/*float: left;*/
+/*width: 50%;*/
+/*}*/
 
-.user-edit {
-float: right;
-width: 50%;
-}
+/*.user-edit {*/
+/*float: right;*/
+/*width: 50%;*/
+/*}*/
 
-input {
-    width: 400px;
-}
+/*input {*/
+    /*width: 400px;*/
+/*}*/
 
-.area {
-    height: 400px;
-    width: 100%;
-}
+/*.area {*/
+    /*margin: 50px 0 0 0;*/
+    /*height: 400px;*/
+    /*width: 100%;*/
+/*}*/
 
-li {
-    cursor: pointer;
-}
+/*li {*/
+    /*cursor: pointer;*/
+/*}*/

@@ -10,7 +10,8 @@ angular
             getAllAuthors: getAllAuthors,
             createBook: createBook,
             searchBook: searchBook,
-            getAllBooksByID: getAllBooksByID
+            getAllBooksByID: getAllBooksByID,
+            mergBookAndAuthorIDs: mergBookAndAuthorIDs
         };
 
         return service;
@@ -88,6 +89,9 @@ angular
 
         function searchAuthor(param) {
             var searchReg;
+            if(param === ''){
+                return [];
+            }
             return $localStorage.authors.filter(function (item) {
                 if (/[0-9]+/.test(param)) {
                     searchReg = new RegExp(param, 'gi');
@@ -102,6 +106,9 @@ angular
 
         function searchBook(param) {
             var searchReg;
+            if(param === ''){
+                return [];
+            }
             return $localStorage.books.filter(function (item) {
                 searchReg = new RegExp(param, 'gi');
                 return searchReg.test(item.name);
@@ -111,6 +118,20 @@ angular
         function getAllBooksByID(id) {
             return $localStorage.books.filter(function (item) {
                 return item.author === id;
+            });
+        }
+
+        function mergBookAndAuthorIDs(authorID, bookID) {
+            $localStorage.authors.forEach(function (item) {
+                if(item.id === authorID) {
+                    item.books.push(bookID);
+                }
+            });
+
+            $localStorage.books.forEach(function (item) {
+                if(item.id === bookID) {
+                    item.author = authorID;
+                }
             });
         }
     });

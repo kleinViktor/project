@@ -1,77 +1,96 @@
-<h3>Books</h3>
-<div class="author area">
-    <div>
-        <p>Authors search:</p>
-        <input placeholder="Enter author name, surname, ID" ng-model="ctrl.searchValue" ng-change="ctrl.startSearch(event)">
-    </div>
-    <div class="search">
-        <ul>
-            <li ng-repeat="findAuthors in ctrl.searchResults">
-                <div ng-click="ctrl.editAuthor(findAuthors)">{{findAuthors.name}} {{findAuthors.sname}} ID: {{findAuthors.id}}</div>
-            </li>
-        </ul>
-    </div>
-    <div class="edit">
+<div class="row">
+    <div class="col s12 card-panel blue lighten-2"><h3>Books</h3></div>
+    <div class="col s6">
         <div>
-            <button ng-click="ctrl.initCreateForm()">Create author</button>
+            <label for="searchAuthor">Authors search:</label>
+            <input id="searchAuthor"
+                   class="validate"
+                   placeholder="Enter author name, surname, ID"
+                   ng-model="ctrl.searchValue"
+                   ng-change="ctrl.startSearch(event)">
         </div>
-        <div>
-            <p>
-                <input placeholder="name" ng-model="ctrl.newName">
-            </p>
-            <p>
-                <input placeholder="surname" ng-model="ctrl.newSname">
-            </p>
-            <p>
-                <input type="date" ng-model="ctrl.newDate">
-            </p>
-            <button ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
+        <div class="search">
+            <ul>
+                <li ng-repeat="findAuthors in ctrl.searchResults">
+                    <div ng-click="ctrl.editAuthor(findAuthors)">{{findAuthors.name}} {{findAuthors.sname}} ID:
+                        {{findAuthors.id}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="edit">
+            <div>
+                <a class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateForm()">Create author</a>
+            </div>
+            <div>
+                <p>
+                    <input placeholder="name" ng-model="ctrl.newName">
+                </p>
+                <p>
+                    <input placeholder="surname" ng-model="ctrl.newSname">
+                </p>
+                <p>
+                    <input type="date" ng-model="ctrl.newDate">
+                </p>
+                <div ng-if="!ctrl.createMode">
+                    <input type="number" placeholder="Book ID" ng-model="ctrl.idAddBook">
+                    <button ng-click="ctrl.addBookToAuthor()">ADD</button>
+                    <div>
+                        <ul>
+                            <li ng-repeat="book in ctrl.getAllBooksByID(ctrl.updateUserID)">{{book}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <button ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
+            </div>
         </div>
     </div>
-</div>
-<br />
+    <br/>
 
-<div class="book area">
-    <div>
-        <p>Books search:</p>
-        <input placeholder="Enter book name" ng-model="ctrl.searchBook" ng-change="ctrl.startSearchBook(event)">
-    </div>
-    <div class="search">
-        <ul>
-            <li ng-repeat="findBooks in ctrl.searchBookResults">
-                <div ng-click="ctrl.editBook(findBooks)">{{findBooks.name}} {{findBooks.sname}} ID: {{findBooks.id}}</div>
-            </li>
-        </ul>
-    </div>
-    <div class="edit">
+    <div class="col s6">
         <div>
-            <button ng-click="ctrl.initCreateBookForm()">Create book</button>
+            <label for="bookSearch">Books search:</label>
+            <input id="bookSearch" placeholder="Enter book name" ng-model="ctrl.searchBook" ng-change="ctrl.startSearchBook(event)">
         </div>
-        <div>
-            <p>
-                <input placeholder="name" ng-model="ctrl.newBookName">
-            </p>
-            <p>
-                <select placeholder="style" ng-model="ctrl.newBookStyle">
-                    <option value="fantasy">
-                        Fantasy
-                    </option>
-                    <option value="comedy">
-                        Comedy
-                    </option>
-                    <option value="drame">
-                        Drama
-                    </option>
+        <div class="search">
+            <ul>
+                <li ng-repeat="findBooks in ctrl.searchBookResults">
+                    <div ng-click="ctrl.editBook(findBooks)">{{findBooks.name}} {{findBooks.sname}} ID:
+                        {{findBooks.id}}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="edit">
+            <div>
+                <button ng-click="ctrl.initCreateBookForm()">Create book</button>
+            </div>
+            <div>
+                <p>
+                    <input placeholder="name" ng-model="ctrl.newBookName">
+                </p>
+                <p>
+                    <select placeholder="style" ng-model="ctrl.newBookStyle">
+                        <option value="fantasy">
+                            Fantasy
+                        </option>
+                        <option value="comedy">
+                            Comedy
+                        </option>
+                        <option value="drame">
+                            Drama
+                        </option>
 
-                </select>
-            </p>
-            <p>
-                <input type="number" placeholder="pages" a ng-model="ctrl.newBookPages">
-            </p>
-            <p>
-                <input type="number" placeholder="author ID" a ng-model="ctrl.newBookAuthorId">
-            </p>
-            <button ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
+                    </select>
+                </p>
+                <p>
+                    <input type="number" placeholder="pages" a ng-model="ctrl.newBookPages">
+                </p>
+                <p>
+                    <input type="number" placeholder="author ID" a ng-model="ctrl.newBookAuthorId">
+                </p>
+                <button ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
+            </div>
         </div>
     </div>
 </div>

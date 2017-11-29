@@ -15,8 +15,9 @@ angular
         }
 
         vm.searchValue = '';
-        vm.searchResults = userService.getAllAuthors();
+        // vm.searchResults = userService.getAllAuthors(); TODO if need all list of authors
         vm.initCreateForm = initCreateForm;
+        vm.initCreateBookForm = initCreateBookForm;
         vm.startSearch = function () {
             if (testRE.test(vm.searchValue) || !isNaN(vm.searchValue)) {
                 vm.searchResults = userService.searchAuthor(vm.searchValue);
@@ -36,6 +37,13 @@ angular
         vm.newSname = '';
         vm.newDate = '';
         vm.newUserBooks = [];
+
+        vm.getAllBooksByID = userService.getAllBooksByID;
+        vm.addBookToAuthor = function () {
+          userService.mergBookAndAuthorIDs(vm.updateUserID, vm.idAddBook);
+        };
+
+
         vm.create = function () {
             userService.createAuthor(vm.newName, vm.newSname, vm.newDate, vm.newUserBooks, vm.updateUserID);
             vm.updateUserID = undefined;
@@ -54,6 +62,7 @@ angular
             vm.newSname = author.sname;
             vm.newDate = new Date(author.date);
             vm.updateUserID = author.id;
+            vm.idAddBook = undefined;
         };
 
         vm.editBook = function (book) {

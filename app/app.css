@@ -1,4 +1,21 @@
-﻿/*body {*/
+﻿::-webkit-input-placeholder {color:#26c6da;}
+::-moz-placeholder          {color:#26c6da;}/* Firefox 19+ */
+:-moz-placeholder           {color:#26c6da;}/* Firefox 18- */
+:-ms-input-placeholder      {color:#26c6da;}
+
+p{font-family:"Verdana";
+}
+.search { cursor: pointer;
+          font-size: 17px;
+          font-style: italic;
+          font-family:"Book Antiqua";
+          color: #43a047;
+}
+
+html {
+    font-family: sans-serif;
+}
+/*body {*/
     /*background-color: #cccccc;*/
     /*font-family: Arial, Sans-Serif;*/
     /*margin: 0px auto;*/

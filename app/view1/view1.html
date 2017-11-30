@@ -2,7 +2,9 @@
     <div class="col s12 card-panel blue lighten-2"><h3>Books</h3></div>
     <div class="col s6">
         <div>
-            <label for="searchAuthor">Authors search:</label>
+            <label for="searchAuthor">
+                <p class="card-panel blue-text text-darken-2">Authors search:</p>
+            </label>
             <input id="searchAuthor"
                    class="validate"
                    placeholder="Enter author name, surname, ID"
@@ -30,18 +32,27 @@
                     <input placeholder="surname" ng-model="ctrl.newSname">
                 </p>
                 <p>
-                    <input type="date" ng-model="ctrl.newDate">
+                    <input placeholder="date" type="text" class="datepicker" ng-model="ctrl.newDate">
+                    <script>
+                        $('.datepicker').pickadate({
+                    selectMonths: true, // Creates a dropdown to control month
+                    selectYears: 15, // Creates a dropdown of 15 years to control year,
+                    today: 'Today',
+                    clear: 'Clear',
+                    close: 'Ok',
+                    closeOnSelect: false // Close upon selecting a date,
+                    });</script>
                 </p>
                 <div ng-if="!ctrl.createMode">
                     <input type="number" placeholder="Book ID" ng-model="ctrl.idAddBook">
-                    <button ng-click="ctrl.addBookToAuthor()">ADD</button>
+                    <button class="waves-effect waves-light btn" ng-click="ctrl.addBookToAuthor()">ADD</button>
                     <div>
                         <ul>
                             <li ng-repeat="book in ctrl.getAllBooksByID(ctrl.updateUserID)">{{book}}</li>
                         </ul>
                     </div>
                 </div>
-                <button ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
+                <button class="waves-effect waves-light btn" ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
             </div>
         </div>
     </div>
@@ -49,7 +60,9 @@
 
     <div class="col s6">
         <div>
-            <label for="bookSearch">Books search:</label>
+            <label for="bookSearch">
+                <p class="card-panel blue-text text-darken-2">Books search:</p>
+            </label>
             <input id="bookSearch" placeholder="Enter book name" ng-model="ctrl.searchBook" ng-change="ctrl.startSearchBook(event)">
         </div>
         <div class="search">
@@ -63,7 +76,7 @@
         </div>
         <div class="edit">
             <div>
-                <button ng-click="ctrl.initCreateBookForm()">Create book</button>
+                <button class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateBookForm()">Create book</button>
             </div>
             <div>
                 <p>
@@ -89,7 +102,7 @@
                 <p>
                     <input type="number" placeholder="author ID" a ng-model="ctrl.newBookAuthorId">
                 </p>
-                <button ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
+                <button class="waves-effect waves-light btn" ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
             </div>
         </div>
     </div>

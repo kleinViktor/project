@@ -1,19 +1,19 @@
-﻿::-webkit-input-placeholder {color:#26c6da;}
+﻿::-webkit-input-placeholder {color:#26c6da;}   /*style for placeholder*/
 ::-moz-placeholder          {color:#26c6da;}/* Firefox 19+ */
 :-moz-placeholder           {color:#26c6da;}/* Firefox 18- */
 :-ms-input-placeholder      {color:#26c6da;}
 
-p{font-family:"Verdana";
+p{font-family:"Verdana"; /*text style for p*/
 }
-.search { cursor: pointer;
+
+.search { cursor: pointer;  /*styles for search*/
           font-size: 17px;
           font-style: italic;
           font-family:"Book Antiqua";
           color: #43a047;
 }
 
-html {
-    font-family: sans-serif;
+html {  font-family: sans-serif; /*text style*/
 }
 /*body {*/
     /*background-color: #cccccc;*/

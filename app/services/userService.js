@@ -1,5 +1,6 @@
 'use strict';
 
+//***************************** our services for app
 angular
     .module('myApp.services', ['ngStorage'])
     .factory('userService', function ($localStorage) {
@@ -16,21 +17,22 @@ angular
 
         return service;
 
+ //**************************** this function getting authors from local storage
         function getAllAuthors() {
             return $localStorage.authors;
         }
-
+//***************************** loading data from local storage
         function initStorage() {
             $localStorage.authors = $localStorage.authors || [];
             $localStorage.books = $localStorage.books || [];
             $localStorage.authorId = $localStorage.authorId || $localStorage.authors.length + 1;
             $localStorage.booksId = $localStorage.booksId || $localStorage.books.length + 1;
         }
-
+//****************************** creating author with next parameters: name, sname, date, books and id
         function createAuthor(name, sname, date, books, id) {
             var author = {};
 
-
+//****************************** using method for each to sort out our array
             if (id) {
                 $localStorage.authors.forEach(function (item) {
                     if (item.id === id) {
@@ -49,6 +51,7 @@ angular
                 $localStorage.authors.push(author);
             }
 
+//***************************** creation an id for each author
             function createId() {
                 var id = $localStorage.authorId;
                 $localStorage.authorId = $localStorage.authorId + 1;
@@ -57,6 +60,7 @@ angular
 
         }
 
+//***************************** creation book with next parameters: name, style, pages, authorId and id
         function createBook(name, style, pages, authorId, id) {
             var book = {};
 
@@ -77,6 +81,7 @@ angular
                 book.id = createId();
             }
 
+//***************************** creation an id for each book
             function createId() {
                 var id = $localStorage.booksId;
                 $localStorage.booksId = $localStorage.booksId + 1;
@@ -87,6 +92,7 @@ angular
 
         }
 
+//***************************** searching author
         function searchAuthor(param) {
             var searchReg;
             if(param === ''){
@@ -104,6 +110,7 @@ angular
             });
         }
 
+//***************************** searching book
         function searchBook(param) {
             var searchReg;
             if(param === ''){
@@ -115,12 +122,14 @@ angular
             });
         }
 
+//***************************** getting all books by their id
         function getAllBooksByID(id) {
             return $localStorage.books.filter(function (item) {
                 return item.author === id;
             });
         }
 
+//***************************** merging book and author IDs
         function mergBookAndAuthorIDs(authorID, bookID) {
             $localStorage.authors.forEach(function (item) {
                 if(item.id === authorID) {

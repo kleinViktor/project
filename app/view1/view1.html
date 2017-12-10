@@ -22,7 +22,8 @@
         </div>
         <div class="edit">
             <div>
-                <a class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateForm()">Create author</a>
+                <a class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateForm()">Create
+                    author</a>
             </div>
             <div>
                 <p>
@@ -35,24 +36,28 @@
                     <input placeholder="date" type="text" class="datepicker" ng-model="ctrl.newDate">
                     <script>
                         $('.datepicker').pickadate({
-                    selectMonths: true, // Creates a dropdown to control month
-                    selectYears: 15, // Creates a dropdown of 15 years to control year,
-                    today: 'Today',
-                    clear: 'Clear',
-                    close: 'Ok',
-                    closeOnSelect: false // Close upon selecting a date,
-                    });</script>
+                            selectMonths: true, // Creates a dropdown to control month
+                            selectYears: 15, // Creates a dropdown of 15 years to control year,
+                            today: 'Today',
+                            clear: 'Clear',
+                            close: 'Ok',
+                            closeOnSelect: false // Close upon selecting a date,
+                        });</script>
                 </p>
                 <div ng-if="!ctrl.createMode">
                     <input type="number" placeholder="Book ID" ng-model="ctrl.idAddBook">
                     <button class="waves-effect waves-light btn" ng-click="ctrl.addBookToAuthor()">ADD</button>
                     <div>
                         <ul>
-                            <li ng-repeat="book in ctrl.getAllBooksByID(ctrl.updateUserID)"><span style="font-weight: bolder">"{{book.name}}"</span> ID: {{book.id}}</li>
+                            <li ng-repeat="book in ctrl.getAllBooksByID(ctrl.updateUserID)"><span
+                                    style="font-weight: bolder">"{{book.name}}"</span> ID: {{book.id}}
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <button class="waves-effect waves-light btn" ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' : 'Update'}}</button>
+                <button class="waves-effect waves-light btn" ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' :
+                    'Update'}}
+                </button>
             </div>
         </div>
     </div>
@@ -63,7 +68,8 @@
             <label for="bookSearch">
                 <p class="card-panel blue-text text-darken-2">Books search:</p>
             </label>
-            <input id="bookSearch" placeholder="Enter book name" ng-model="ctrl.searchBook" ng-change="ctrl.startSearchBook(event)">
+            <input id="bookSearch" placeholder="Enter book name" ng-model="ctrl.searchBook"
+                   ng-change="ctrl.startSearchBook(event)">
         </div>
         <div class="search">
             <ul>
@@ -76,7 +82,9 @@
         </div>
         <div class="edit">
             <div>
-                <button class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateBookForm()">Create book</button>
+                <button class="waves-effect waves-light btn blue lighten-2" ng-click="ctrl.initCreateBookForm()">Create
+                    book
+                </button>
             </div>
             <div>
                 <p>
@@ -102,7 +110,9 @@
                 <p>
                     <input type="number" placeholder="author ID" a ng-model="ctrl.newBookAuthorId">
                 </p>
-                <button class="waves-effect waves-light btn" ng-click="ctrl.createBook()">{{ctrl.createBookMode ? 'Create' : 'Update'}}</button>
+                <button class="waves-effect waves-light btn" ng-click="ctrl.createBook()">{{ctrl.createBookMode ?
+                    'Create' : 'Update'}}
+                </button>
             </div>
         </div>
     </div>

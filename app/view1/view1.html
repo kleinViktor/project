@@ -2,14 +2,12 @@
     <div class="col s12 card-panel blue lighten-2"><h3>Books</h3></div>
     <div class="col s6">
         <div>
-            <label for="searchAuthor">
-                <p class="card-panel blue-text text-darken-2">Authors search:</p>
-            </label>
-            <input id="searchAuthor"
-                   class="validate"
-                   placeholder="Enter author name, surname, ID"
-                   ng-model="ctrl.searchValue"
-                   ng-change="ctrl.startSearch(event)">
+            <!--<input id="searchAuthor"-->
+                   <!--class="validate"-->
+                   <!--placeholder="Enter author name, surname, ID"-->
+                   <!--ng-model="ctrl.searchValue"-->
+                   <!--ng-change="ctrl.startSearch(event)">-->
+            <search-input type="'authors'" input-data="ctrl.authors" search-action="ctrl.search"></search-input>
         </div>
         <div class="search">
             <ul>
@@ -34,15 +32,6 @@
                 </p>
                 <p>
                     <input placeholder="date" type="text" class="datepicker" ng-model="ctrl.newDate">
-                    <script>
-                        $('.datepicker').pickadate({
-                            selectMonths: true, // Creates a dropdown to control month
-                            selectYears: 15, // Creates a dropdown of 15 years to control year,
-                            today: 'Today',
-                            clear: 'Clear',
-                            close: 'Ok',
-                            closeOnSelect: false // Close upon selecting a date,
-                        });</script>
                 </p>
                 <div ng-if="!ctrl.createMode">
                     <input type="number" placeholder="Book ID" ng-model="ctrl.idAddBook">

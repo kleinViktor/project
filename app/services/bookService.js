@@ -15,7 +15,7 @@ angular
         function getBook(id) {
             return _.find($localStorage.books, function (i) {
                 return i.id === id;
-            };
+            });
         }
 
         function createBook(name, style, pages) {

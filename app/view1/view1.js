@@ -16,6 +16,24 @@ angular
             initCreateBookForm();
         }
 
+        vm.authors = formatStorageData(userService.getAllAuthors());
+        vm.search = search;
+
+        function formatStorageData(data) {
+            var formObj = {};
+
+            data.forEach(function (item) {
+                formObj[item.name + ' ' + item.sname] = null;
+            });
+
+            return formObj;
+        }
+
+        function search(searchValue) {
+            var splitResult = _.split(searchValue, ' ', 2);
+
+        }
+
 //***************************** view model for searching author among other authors
         vm.searchValue = '';
         // vm.searchResults = userService.getAllAuthors(); TODO if need all list of authors
@@ -45,7 +63,7 @@ angular
 
         vm.getAllBooksByID = userService.getAllBooksByID;
         vm.addBookToAuthor = function () {
-          userService.mergBookAndAuthorIDs(vm.updateUserID, vm.idAddBook);
+            userService.mergBookAndAuthorIDs(vm.updateUserID, vm.idAddBook);
         };
 
 //***************************** view model for creating author

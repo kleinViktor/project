@@ -20,13 +20,11 @@ angular
  //**************************** this function getting authors from local storage
         function getAllAuthors() {
             return $localStorage.authors;
-        }
+
 //***************************** loading data from local storage
         function initStorage() {
             $localStorage.authors = $localStorage.authors || [];
             $localStorage.books = $localStorage.books || [];
-            $localStorage.authorId = $localStorage.authorId || $localStorage.authors.length + 1;
-            $localStorage.booksId = $localStorage.booksId || $localStorage.books.length + 1;
         }
 //****************************** creating author with next parameters: name, sname, date, books and id
         function createAuthor(name, sname, date, books, id) {

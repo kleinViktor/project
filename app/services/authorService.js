@@ -15,15 +15,15 @@ angular
         function getAuthor(id) {
             return _.find($localStorage.authors, function (i) {
                 return i.id === id;
-            };
+            });
         }
 
         function createAuthor(name, surname, birthday) {
             var newAuthor = {
-              nane: name,
-              sname: surname,
-              date: birthday,
-              id: $localStorage.authors.length
+                nane: name,
+                sname: surname,
+                date: birthday,
+                id: $localStorage.authors.length
             };
             $localStorage.authors.push(newAuthor);
         }

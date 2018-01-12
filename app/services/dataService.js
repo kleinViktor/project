@@ -2,8 +2,8 @@
 
 //***************************** our services for app
 angular
-    .module('myApp.services', ['ngStorage'])
-    .factory('userService', function ($localStorage) {
+    .module('myApp.services', ['ngStorage', 'myApp.services'])
+    .factory('dataService', function ($localStorage) {
         var service = {
             initStorage: initStorage,
             createAuthor: createAuthor,
@@ -20,7 +20,7 @@ angular
  //**************************** this function getting authors from local storage
         function getAllAuthors() {
             return $localStorage.authors;
-
+        }
 //***************************** loading data from local storage
         function initStorage() {
             $localStorage.authors = $localStorage.authors || [];

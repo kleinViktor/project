@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html><div class="col s6">
+    <div>
+        <label for="bookSearch">
+            <p class="card-panel blue-text text-darken-2">Books search:</p>
+        </label>
+        <input id="bookSearch" placeholder="Enter book name" ng-model="bksCtrl.searchBook"
+               ng-change="bksCtrl.startSearchBook(event)">
+    </div>
+    <div class="search">
+        <ul>
+            <li ng-repeat="findBooks in bksCtrl.searchBookResults">
+                <div ng-click="bksCtrl.editBook(findBooks)">{{findBooks.name}} {{findBooks.sname}} ID:
+                    {{findBooks.id}}
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="edit">
+        <div>
+            <button class="waves-effect waves-light btn blue lighten-2" ng-click="bksCtrl.initCreateBookForm()">Create
+                book
+            </button>
+        </div>
+        <div>
+            <p>
+                <input placeholder="name" ng-model="bksCtrl.newBookName">
+            </p>
+            <p>
+                <select placeholder="style" ng-model="bksCtrl.newBookStyle">
+                    <option value="fantasy">
+                        Fantasy
+                    </option>
+                    <option value="comedy">
+                        Comedy
+                    </option>
+                    <option value="drame">
+                        Drama
+                    </option>
+
+                </select>
+            </p>
+            <p>
+                <input type="number" placeholder="pages" a ng-model="bksCtrl.newBookPages">
+            </p>
+            <p>
+                <input type="number" placeholder="author ID" a ng-model="bksCtrl.newBookAuthorId">
+            </p>
+            <button class="waves-effect waves-light btn" ng-click="bksCtrl.createBook()">{{bksCtrl.createBookMode ?
+                'Create' : 'Update'}}
+            </button>
+        </div>
+    </div>
+</div>

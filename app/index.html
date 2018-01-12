@@ -17,20 +17,24 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-<div ng-view></div>
+<div ui-view></div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/ngstorage/ngStorage.js"></script>
 <script src="bower_components/materialize/dist/js/materialize.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
+<script src="services/authorService.js"></script>
+<script src="services/bookService.js"></script>
 <script src="services/dataService.js"></script>
 <script src="app.js"></script>
-<script src="view1/view1.js"></script>
+<script src="Authors/authors.js"></script>
+<script src="Books/books.js"></script>
 <script src="directives/searchInput.js"></script>
 <script>
     $('.datepicker').pickadate({

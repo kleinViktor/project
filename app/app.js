@@ -2,20 +2,33 @@
 
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
-    'ngRoute',
-    'myApp.view1',
+    'ui.router',
+    'ncy-angular-breadcrumb',
     'ngStorage',
     'myApp.services',
-    'directives'
-]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('!');
-
-    //$routeProvider.otherwise({redirectTo: '/view1'});
-
-    $routeProvider.when('/', {
-        templateUrl: 'view1/view1.html',
-        controller: 'View1Ctrl',
-        controllerAs: 'ctrl'
+    'directives',
+    'myApp.Authors',
+    'myApp.Books'
+]).config(function ($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise('/authors');
+    $stateProvider.state('list', {
+        url: '/authors',
+        templateUrl: 'Authors/authors.html',
+        controller: 'authorsCtrl',
+        controllerAs: 'authCtrl',
+        ncyBreadcrumb: {
+            label: 'Authors'
+        }
     });
-}]);
+
+    $stateProvider.state('books', {
+        url: '/books',
+        templateUrl: 'Books/books.html',
+        controller: 'booksCtrl',
+        controllerAs: 'bksCtrl',
+        ncyBreadcrumb: {
+            label: 'books'
+        }
+    });
+});
 

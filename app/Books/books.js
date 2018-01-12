@@ -2,8 +2,8 @@
 
 //***************************** our view model presenter
 angular
-    .module('myApp.view1', ['myApp.services'])
-    .controller('View1Ctrl', function (userService) {
+    .module('myApp.Books', ['myApp.services'])
+    .controller('booksCtrl', function (dataService) {
         var vm = this;
         var testRE = new RegExp('([a-zA-Z]){3}'); // TODO check symbols count std: 3
 
@@ -11,12 +11,12 @@ angular
 
 //***************************** geting data for a controller - use the controller’s activate function
         function activate() {
-            userService.initStorage();
+            dataService.initStorage();
             initCreateForm();
             initCreateBookForm();
         }
 
-        vm.authors = formatStorageData(userService.getAllAuthors());
+        vm.authors = formatStorageData(dataService.getAllAuthors());
         vm.search = search;
 
         function formatStorageData(data) {
@@ -36,12 +36,12 @@ angular
 
 //***************************** view model for searching author among other authors
         vm.searchValue = '';
-        // vm.searchResults = userService.getAllAuthors(); TODO if need all list of authors
+        // vm.searchResults = dataService.getAllAuthors(); TODO if need all list of authors
         vm.initCreateForm = initCreateForm;
         vm.initCreateBookForm = initCreateBookForm;
         vm.startSearch = function () {
             if (testRE.test(vm.searchValue) || !isNaN(vm.searchValue)) {
-                vm.searchResults = userService.searchAuthor(vm.searchValue);
+                vm.searchResults = dataService.searchAuthor(vm.searchValue);
             }
         };
 
@@ -49,7 +49,7 @@ angular
         vm.searchBook = '';
         vm.searchBookResults = [];
         vm.startSearchBook = function () {
-            vm.searchBookResults = userService.searchBook(vm.searchBook);
+            vm.searchBookResults = dataService.searchBook(vm.searchBook);
         };
 
 //***************************** adding book to author
@@ -61,21 +61,21 @@ angular
         vm.newDate = '';
         vm.newUserBooks = [];
 
-        vm.getAllBooksByID = userService.getAllBooksByID;
+        vm.getAllBooksByID = dataService.getAllBooksByID;
         vm.addBookToAuthor = function () {
-            userService.mergBookAndAuthorIDs(vm.updateUserID, vm.idAddBook);
+            dataService.mergBookAndAuthorIDs(vm.updateUserID, vm.idAddBook);
         };
 
 //***************************** view model for creating author
         vm.create = function () {
-            userService.createAuthor(vm.newName, vm.newSname, vm.newDate, vm.newUserBooks, vm.updateUserID);
+            dataService.createAuthor(vm.newName, vm.newSname, vm.newDate, vm.newUserBooks, vm.updateUserID);
             vm.updateUserID = undefined;
             initCreateForm();
         };
 
 //***************************** view model for creating a book
         vm.createBook = function () {
-            userService.createBook(vm.newBookName, vm.newBookStyle, vm.newBookPages, vm.newBookAuthorId, vm.updateBookID);
+            dataService.createBook(vm.newBookName, vm.newBookStyle, vm.newBookPages, vm.newBookAuthorId, vm.updateBookID);
             vm.updateBookID = undefined;
             initCreateBookForm();
         };

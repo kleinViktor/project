@@ -8,7 +8,7 @@ angular
             initStorage: initStorage,
             createAuthor: createAuthor,
             searchAuthor: searchAuthor,
-            getAllAuthors: getAllAuthors,
+            getAllAuthors: getAllAuthors, //TODO need connect to special service
             createBook: createBook,
             searchBook: searchBook,
             getAllBooksByID: getAllBooksByID,

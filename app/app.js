@@ -4,8 +4,6 @@
 angular.module('myApp', [
     'ui.router',
     'ncy-angular-breadcrumb',
-    'ngStorage',
-    'myApp.services',
     'directives',
     'myApp.Authors',
     'myApp.Books'

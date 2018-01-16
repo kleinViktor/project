@@ -1,6 +1,18 @@
+<nav>
+    <div class="nav-wrapper">
+        <input>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a>Search</a></li>
+            <li><a ng-click="authCtrl.openNewAuthorDialog()">Add New Author</a></li>
+        </ul>
+    </div>
+</nav>
+<div>
+    <button ng-click="authCtrl.openNewAuthorDialog()">Add New Author</button>
+</div>
 <div ng-repeat="ath in authCtrl.authors">
     <author-item author="ath"></author-item>
 </div>
-<div class="modal" id="modal1">
+<div class="" id="dialog">
     MODALKA
 </div>

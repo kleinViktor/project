@@ -3,11 +3,28 @@
 //***************************** our view model presenter
 angular
     .module('myApp.Authors', ['myApp.services', 'directives'])
-    .controller('authorsCtrl', function (dataService) {
+    .controller('authorsCtrl', function ($window, dataService) {
         var vm = this;
 
         vm.authors = dataService.getAllAuthors();
+        
+        vm.openNewAuthorDialog = openNewAuthorDialog;
+        
+        function openNewAuthorDialog() {
+            $window.$( "#dialog" ).dialog({
+                autoOpen: false,
+                height: 400,
+                width: 350,
+                modal: true,
+                buttons: {
+                    "Create an account": function () {
+                        
+                    },
+                }
+            });
 
+            $window.$( "#dialog" ).dialog( "open" );
+        }
 
         //var testRE = new RegExp('([a-zA-Z]){3}'); // TODO check symbols count std: 3
 

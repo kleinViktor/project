@@ -9,36 +9,51 @@ angular
     .factory('dataService', function ($localStorage, bookService, authorService) {
         var service = {
             initStorage: initStorage,
+            mergBookAndAuthorIDs: mergBookAndAuthorIDs,
+
             createAuthor: authorService.createAuthor,
-            searchAuthor: searchAuthor,
-            getAllAuthors: getAllAuthors,
             updateAuthor: authorService.updateAuthor,
             deleteAuthor: authorService.deleteAuthor,
             getAuthor: authorService.getAuthor,
+            searchAuthor: searchAuthor,
+            getAllAuthors: getAllAuthors,
+
             createBook: bookService.createBook,
+            deleteBook: bookService.deleteBook,
+            updateBook: bookService.updateBook,
+            getBook: bookService.getBook,
             searchBook: searchBook,
             getAllBooksByID: getAllBooksByID,
-            getAllBooks: getAllBooks,
-
-            mergBookAndAuthorIDs: mergBookAndAuthorIDs
+            getAllBooks: getAllBooks
         };
 
         var BOOKS = service.getAllBooks();
         var AUTHORS = service.getAllAuthors();
 
         return service;
-
+// GENERAL methods
         function initStorage() {
             authorService.initCheckAuthorStorage();
             bookService.initCheckBookStorage();
         }
 
+        function mergBookAndAuthorIDs(authorID, bookID) {
+
+            AUTHORS.forEach(function (item) {
+                if (item.id === authorID) {
+                    item.books.push(bookID);
+                }
+            });
+
+            BOOKS.forEach(function (item) {
+                if (item.id === bookID) {
+                    item.author = authorID;
+                }
+            });
+        }
+// AUTHORS methods
         function getAllAuthors() {
             return _.cloneDeep(authorService.getAllAuthors());
-        }
-
-        function getAllBooks() {
-            return _.cloneDeep(bookService.getAllBooks());
         }
 
         function searchAuthor(param) {
@@ -58,6 +73,10 @@ angular
                 }
             });
         }
+ // BOOKS methods
+        function getAllBooks() {
+            return _.cloneDeep(bookService.getAllBooks());
+        }
 
         function searchBook(param) {
             var searchReg;
@@ -74,21 +93,6 @@ angular
         function getAllBooksByID(id) {
             return BOOKS.filter(function (item) {
                 return item.author === id;
-            });
-        }
-
-        function mergBookAndAuthorIDs(authorID, bookID) {
-
-            AUTHORS.forEach(function (item) {
-                if (item.id === authorID) {
-                    item.books.push(bookID);
-                }
-            });
-
-            BOOKS.forEach(function (item) {
-                if (item.id === bookID) {
-                    item.author = authorID;
-                }
             });
         }
     });

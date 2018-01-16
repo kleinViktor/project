@@ -3,10 +3,9 @@
 //***************************** our services for app
 angular
     .module('myApp.services', [
-        'ngStorage',
         'myApp.services.book',
         'myApp.services.author'])
-    .factory('dataService', function ($localStorage, bookService, authorService) {
+    .factory('dataService', function (bookService, authorService) {
         var service = {
             initStorage: initStorage,
             mergBookAndAuthorIDs: mergBookAndAuthorIDs,

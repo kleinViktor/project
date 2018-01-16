@@ -12,8 +12,8 @@ angular
 //***************************** geting data for a controller - use the controller’s activate function
         function activate() {
             dataService.initStorage();
-            initCreateForm();
-            initCreateBookForm();
+            // initCreateForm();
+            // initCreateBookForm();
         }
 
         vm.authors = formatStorageData(dataService.getAllAuthors());

@@ -1,16 +1,26 @@
 'use strict';
 
 angular
-    .module('myApp.services', ['ngStorage'])
+    .module('myApp.services.book', ['ngStorage'])
     .factory('bookService', function ($localStorage) {
         var service = {
+            getAllBooks: getAllBooks,
             getBook: getBook,
             updateBook: updateBook,
             deleteBook: deleteBook,
-            createBook: createBook
+            createBook: createBook,
+            initCheckBookStorage: initCheckBookStorage
         };
 
         return service;
+
+        function initCheckBookStorage() {
+            $localStorage.books = $localStorage.books || [];
+        }
+
+        function getAllBooks() {
+            return $localStorage.books;
+        }
 
         function getBook(id) {
             return _.find($localStorage.books, function (i) {

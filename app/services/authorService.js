@@ -1,16 +1,22 @@
 'use strict';
 
 angular
-    .module('myApp.services', ['ngStorage'])
+    .module('myApp.services.author', ['ngStorage'])
     .factory('authorService', function ($localStorage) {
         var service = {
             getAuthor: getAuthor,
+            getAllAuthors: getAllAuthors,
             updateAuthor: updateAuthor,
             deleteAuthor: deleteAuthor,
-            createAuthor: createAuthor
+            createAuthor: createAuthor,
+            initCheckAuthorStorage: initCheckAuthorStorage
         };
 
         return service;
+
+        function getAllAuthors() {
+            return $localStorage.authors;
+        }
 
         function getAuthor(id) {
             return _.find($localStorage.authors, function (i) {
@@ -34,5 +40,9 @@ angular
 
         function updateAuthor(id, data) {
             $localStorage.authors[id] = data;
+        }
+
+        function initCheckAuthorStorage() {
+            $localStorage.authors = $localStorage.authors || [];
         }
     });

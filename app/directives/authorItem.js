@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-    .module('directives', [])
+    .module('directives.auth.item', [])
     .directive('authorItem', function () {
         return {
             restrict: 'E',
@@ -10,9 +10,19 @@ angular
             },
             bindController: true,
             templateUrl: 'directives/views/authorItem.html',
-            controller: function ($scope) {
-                $scope.modalOpen = function () {
-                    $('#modal1').modal('open');
+            controller: function ($scope, $rootScope) {
+                $scope.openEditModal = function () {
+                    $rootScope.$broadcast('OPEN_MODAL', {
+                        dialogType: 'EDIT',
+                        author: $scope.author
+                    })
+                }
+
+                $scope.DeleteModal = function () {
+                    $rootScope.$broadcast('OPEN_MODAL', {
+                        dialogType: 'DELETE',
+                        id: $scope.author.id
+                    })
                 }
             }
         };

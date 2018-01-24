@@ -3,7 +3,7 @@
     <h6 ng-if="author.date">Date: {{author.date}}</h6>
     <h6>ID:{{author.id}}</h6>
     <dvi>
-        <button>EDIT</button>
-        <button>DELETE</button>
+        <button ng-click="openEditModal()">EDIT</button>
+        <button ng-click="openDeleteModal()">DELETE</button>
     </dvi>
 </div>

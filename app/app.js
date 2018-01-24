@@ -4,7 +4,6 @@
 angular.module('myApp', [
     'ui.router',
     'ncy-angular-breadcrumb',
-    'directives',
     'myApp.Authors',
     'myApp.Books'
 ]).config(function ($stateProvider, $urlRouterProvider) {

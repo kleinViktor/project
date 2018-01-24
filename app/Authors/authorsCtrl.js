@@ -2,35 +2,45 @@
 
 //***************************** our view model presenter
 angular
-    .module('myApp.Authors', ['myApp.services', 'directives'])
-    .controller('authorsCtrl', function ($window, dataService) {
+    .module('myApp.Authors', ['myApp.services', 'directives.auth.add.edit', 'directives.auth.item'])
+    .controller('authorsCtrl', function ($window, $rootScope, dataService) {
         var vm = this;
 
         vm.authors = dataService.getAllAuthors();
-        
-        vm.openNewAuthorDialog = openNewAuthorDialog;
-        
-        function openNewAuthorDialog() {
-            $window.$( "#dialog" ).dialog({
-                autoOpen: false,
-                height: 400,
-                width: 350,
-                modal: true,
-                buttons: {
-                    "Create an account": function () {
-                        
-                    },
-                }
-            });
+        vm.authorSearchValue = '';
 
-            $window.$( "#dialog" ).dialog( "open" );
+        vm.openNewAuthorDialog = openNewAuthorDialog;
+        vm.dialogType = '';
+
+        $window.$( "#dialog" ).dialog({
+            autoOpen: false,
+            height: 400,
+            width: 350,
+            modal: true,
+            buttons: {
+                "Create an account": function () {
+
+                },
+            }
+        });
+
+
+        $rootScope.$on('OPEN_MODAL', function (event, params) {
+            if (params.dialogType) {
+                vm.dialogType = params.dialogType;
+                $window.$("#dialog").dialog("open");
+            }
+        });
+
+        function openNewAuthorDialog() {
+            vm.dialogType = 'ADD';
+            $window.$("#dialog").dialog("open");
         }
 
         //var testRE = new RegExp('([a-zA-Z]){3}'); // TODO check symbols count std: 3
 
 
-
-       // activate();
+        // activate();
 
 // //***************************** geting data for a controller - use the controller’s activate function
 //         function activate() {

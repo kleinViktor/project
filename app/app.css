@@ -131,3 +131,22 @@ html {  font-family: sans-serif; /*text style*/
 /*li {*/
     /*cursor: pointer;*/
 /*}*/
+
+/*.menu-button {*/
+    /*border: 2px solid white;*/
+    /*border-radius: 5px;*/
+    /*margin: 10px;*/
+    /*width: 60px;*/
+    /*height: 20px;*/
+    /*cursor: pointer;*/
+    /*text-align: center;*/
+/*}*/
+
+.nav-wrapper ::placeholder {
+    color: #CCC;
+    font-size: 23px;
+}
+
+.nav-wrapper input[type="text"]{
+    font-size: 23px;
+}

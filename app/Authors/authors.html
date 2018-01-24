@@ -1,17 +1,18 @@
 <nav>
-    <div class="nav-wrapper">
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a>Search</a></li>
-            <li><a ng-click="authCtrl.openNewAuthorDialog()">Add New Author</a></li>
+    <div class="nav-wrapper row">
+        <div class="input-field col s9">
+            <input type="text" placeholder="Please start entering author name..." ng-model="authCtrl.authorSearchValue">
+        </div>
+        <ul id="nav-mobile" class="right hide-on-med-and-down col s3">
+            <li><a class="waves-effect green darken-2 btn" ng-click="authCtrl.openNewAuthorDialog()">Add New Author</a>
+            </li>
+            <li><a class="waves-effect blue darken-1 btn" ui-sref="books">BOOKS</a></li>
         </ul>
     </div>
 </nav>
-<div>
-    <button ng-click="authCtrl.openNewAuthorDialog()">Add New Author</button>
-</div>
-<div ng-repeat="ath in authCtrl.authors">
+<div ng-repeat="ath in authCtrl.authors | filter:authCtrl.authorSearchValue">
     <author-item author="ath"></author-item>
 </div>
 <div class="" id="dialog">
-    MODALKA
+    <add-edit-author ng-if="authCtrl.dialogType === 'ADD' || authCtrl.dialogType === 'EDIT'" type="authCtrl.dialogType"></add-edit-author>
 </div>

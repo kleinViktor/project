@@ -2,24 +2,24 @@
 
 angular
     .module('directives.auth.item', [])
-    .directive('authorItem', function () {
+    .directive('bookItem', function () {
         return {
             restrict: 'E',
             scope: {
-                author: "="
+                book: "="
             },
             bindController: true,
-            templateUrl: 'directives/views/authorItem.html',
+            templateUrl: 'directives/views/bookItem.html',
             controller: function ($scope, $rootScope, dataService) {
                 $scope.openEditModal = function () {
                     $rootScope.$broadcast('OPEN_MODAL', {
                         dialogType: 'EDIT',
-                        author: $scope.author
+                        book: $scope.book
                     })
                 }
 
                 $scope.Delete = function () {
-                    dataService.deleteAuthor($scope.author.id);
+                    dataService.deleteBook($scope.book.id);
                 }
             }
         };

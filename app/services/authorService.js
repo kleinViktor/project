@@ -24,13 +24,10 @@ angular
             });
         }
 
-        function createAuthor(name, surname, birthday) {
-            var newAuthor = {
-                nane: name,
-                sname: surname,
-                date: birthday,
-                id: $localStorage.authors.length
-            };
+        function createAuthor(author) {
+            var newAuthor = {};
+            _.merge(newAuthor, author);
+            newAuthor.id = $localStorage.authors.length;
             $localStorage.authors.push(newAuthor);
         }
 

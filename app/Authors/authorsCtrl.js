@@ -6,35 +6,66 @@ angular
     .controller('authorsCtrl', function ($window, $rootScope, dataService) {
         var vm = this;
 
-        vm.authors = dataService.getAllAuthors();
+        setAuthors();
         vm.authorSearchValue = '';
 
         vm.openNewAuthorDialog = openNewAuthorDialog;
         vm.dialogType = '';
+        vm.author = {};
+        initAuthor();
 
-        $window.$( "#dialog" ).dialog({
+        vm.createAuthor = createAuthor;
+        vm.updateAuthor = updateAuthor;
+
+        $window.$("#dialog").dialog({
             autoOpen: false,
             height: 400,
             width: 350,
-            modal: true,
-            buttons: {
-                "Create an account": function () {
-
-                },
-            }
-        });
-
-
-        $rootScope.$on('OPEN_MODAL', function (event, params) {
-            if (params.dialogType) {
-                vm.dialogType = params.dialogType;
-                $window.$("#dialog").dialog("open");
-            }
+            modal: true
         });
 
         function openNewAuthorDialog() {
             vm.dialogType = 'ADD';
+            initAuthor();
             $window.$("#dialog").dialog("open");
+        }
+
+        $rootScope.$on('OPEN_MODAL', modalParser);
+
+        function modalParser(event, params) {
+            if (params.dialogType) {
+                vm.dialogType = params.dialogType;
+                if (params.author) {
+                    _.merge(vm.author, params.author);
+                    vm.author.date = new Date(vm.author.date);
+                } else {
+                    return;
+                }
+                $window.$("#dialog").dialog("open");
+            }
+        }
+
+        function initAuthor() {
+            vm.author.name = '';
+            vm.author.sname = '';
+            vm.author.date = '';
+            vm.author.books = [];
+        }
+
+        function createAuthor() {
+            dataService.createAuthor(vm.author);
+            $window.$("#dialog").dialog("close");
+            setAuthors();
+        }
+
+        function updateAuthor() {
+            dataService.updateAuthor(vm.author.id, vm.author)
+            $window.$("#dialog").dialog("close");
+            setAuthors();
+        }
+
+        function setAuthors() {
+            vm.authors = dataService.getAllAuthors();
         }
 
         //var testRE = new RegExp('([a-zA-Z]){3}'); // TODO check symbols count std: 3

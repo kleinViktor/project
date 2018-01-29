@@ -1,26 +1,22 @@
 <div>
-    <!--<p>-->
-        <!--<input placeholder="name" ng-model="ctrl.newName">-->
-    <!--</p>-->
-    <!--<p>-->
-        <!--<input placeholder="surname" ng-model="ctrl.newSname">-->
-    <!--</p>-->
-    <!--<p>-->
-        <!--<input placeholder="date" type="text" class="datepicker" ng-model="ctrl.newDate">-->
-    <!--</p>-->
-    <!--<div ng-if="!ctrl.createMode">-->
-        <!--<input type="number" placeholder="Book ID" ng-model="ctrl.idAddBook">-->
-        <!--<button class="waves-effect waves-light btn" ng-click="ctrl.addBookToAuthor()">ADD</button>-->
-        <!--<div>-->
-            <!--<ul>-->
-                <!--<li ng-repeat="book in ctrl.getAllBooksByID(ctrl.updateUserID)"><span-->
-                        <!--style="font-weight: bolder">"{{book.name}}"</span> ID: {{book.id}}-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<button class="waves-effect waves-light btn" ng-click="ctrl.create()">{{ctrl.createMode ? 'Create' :-->
-        <!--'Update'}}-->
-    <!--</button>-->
-    {{type}}
+    <p>
+        <input placeholder="name" ng-model="authCtrl.author.name">
+    </p>
+    <p>
+        <input placeholder="surname" ng-model="authCtrl.author.sname">
+    </p>
+    <p>
+        <input placeholder="date" type="date" class="datepicker" ng-model="authCtrl.author.date">
+    </p>
+    <p ng-if="authCtrl.editMode">
+        {{authCtrl.author.books}}
+    </p>
+    <div>
+        <button ng-if="authCtrl.dialogType === 'ADD'"
+                ng-click="authCtrl.createAuthor()">Create
+        </button>
+        <button ng-if="authCtrl.dialogType === 'EDIT'"
+                ng-click="authCtrl.updateAuthor()">Update
+        </button>
+    </div>
 </div>

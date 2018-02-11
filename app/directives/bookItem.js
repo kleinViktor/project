@@ -20,6 +20,10 @@ angular
 
                 $scope.Delete = function () {
                     dataService.deleteBook($scope.book.id);
+                    $rootScope.$broadcast('OPEN_MODAL', {
+                        dialogType: 'DELETE',
+                        book: $scope.book
+                    })
                 }
             }
         };

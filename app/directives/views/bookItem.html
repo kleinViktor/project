@@ -1,0 +1,8 @@
+<div ng-if="book">
+    <h5 ng-click="modalOpen">{{book.name}}(ID:{{book.id}})</h5>
+    <h6 ng-if="book.style && book.style !== 'NONE'">Style: {{book.style}}</h6>
+    <dvi>
+        <button ng-click="openEditModal()">EDIT</button>
+        <button ng-click="Delete()">DELETE</button>
+    </dvi>
+</div>

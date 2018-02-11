@@ -32,7 +32,7 @@ angular
         }
 
         function deleteAuthor(id) {
-            $localStorage.authors[id] = {};
+            delete $localStorage.authors[id];
         }
 
         function updateAuthor(id, data) {

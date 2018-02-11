@@ -1,0 +1,31 @@
+<div class="edit">
+    <div>
+        <p>
+            <input placeholder="name" ng-model="bksCtrl.book.name">
+        </p>
+        <p>
+            <select placeholder="style" ng-model="bksCtrl.book.style">
+                <option value="NONE">NONE</option>
+                <option ng-repeat="style in bksCtrl.booksStyles" value="{{style.styleName}}">
+                    {{style.styleName}}
+                </option>
+            </select>
+        </p>
+        <p>
+            <input type="number" placeholder="pages" ng-model="bksCtrl.book.pages">
+        </p>
+        <p>
+            <input type="number" placeholder="author ID" ng-model="bksCtrl.book.authorId">
+        </p>
+        <button class="waves-effect waves-light btn"
+                ng-if="bksCtrl.dialogType === 'ADD'"
+                ng-click="bksCtrl.createBook()">
+            Create
+        </button>
+        <button class="waves-effect waves-light btn"
+                ng-if="bksCtrl.dialogType === 'EDIT'"
+                ng-click="bksCtrl.updateBook()">
+            Update
+        </button>
+    </div>
+</div>

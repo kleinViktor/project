@@ -4,18 +4,21 @@
             <input type="text" placeholder="Please start entering book name...">
         </div>
         <ul id="nav-mobile" class="right hide-on-med-and-down col s3">
-            <li><a class="waves-effect green darken-2 btn" ng-click="">Add New Book</a>
+            <li>
+                <a class="waves-effect green darken-2 btn" ng-click="bksCtrl.openNewBookDialog()">Add New Book</a>
             </li>
-            <li><a class="waves-effect blue darken-1 btn" ui-sref="authors">AUTHORS</a></li>
+            <li>
+                <a class="waves-effect blue darken-1 btn" ui-sref="authors">AUTHORS</a>
+            </li>
         </ul>
     </div>
 </nav>
-<!--<div ng-repeat="">-->
-    <!--<author-item author="ath"></author-item>-->
-<!--</div>-->
-<!--<div class="" id="dialog">-->
-    <!--<add-edit-author ng-if="authCtrl.dialogType === 'ADD' || authCtrl.dialogType === 'EDIT'"></add-edit-author>-->
-<!--</div>-->
+<div ng-repeat="bk in bksCtrl.books">
+    <book-item book="bk"></book-item>
+</div>
+<div class="" id="dialog">
+    <add-edit-book ng-if="bksCtrl.dialogType === 'ADD' || bksCtrl.dialogType === 'EDIT'"></add-edit-book>
+</div>
 
 
 

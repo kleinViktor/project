@@ -150,3 +150,7 @@ html {  font-family: sans-serif; /*text style*/
 .nav-wrapper input[type="text"]{
     font-size: 23px;
 }
+
+select {
+    display: block;
+}

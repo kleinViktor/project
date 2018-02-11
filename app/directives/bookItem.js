@@ -1,7 +1,7 @@
 "use strict";
 
 angular
-    .module('directives.auth.item', [])
+    .module('directives.book.item', [])
     .directive('bookItem', function () {
         return {
             restrict: 'E',

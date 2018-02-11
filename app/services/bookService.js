@@ -28,18 +28,15 @@ angular
             });
         }
 
-        function createBook(name, style, pages) {
-            var newBook = {
-                nane: name,
-                style: style,
-                pages: pages,
-                id: $localStorage.books.length
-            };
+        function createBook(book) {
+            var newBook = {};
+            _.merge(newBook, book);
+            newBook.id = $localStorage.books.length;
             $localStorage.books.push(newBook);
         }
 
         function deleteBook(id) {
-            $localStorage.books[id] = {};
+            delete $localStorage.books[id];
         }
 
         function updateBook(id, data) {

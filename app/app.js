@@ -4,6 +4,7 @@
 angular.module('myApp', [
     'ui.router',
     'ncy-angular-breadcrumb',
+    'myApp.services',
     'myApp.Authors',
     'myApp.Books'
 ]).config(function ($stateProvider, $urlRouterProvider) {
@@ -28,5 +29,7 @@ angular.module('myApp', [
             label: 'books'
         }
     });
+}).run(function (dataService){
+    dataService.initStorage();
 });
 

@@ -6,23 +6,27 @@ angular
     .controller('authorsCtrl', function ($window, $rootScope, dataService) {
         var vm = this;
 
-        setAuthors();
-        vm.authorSearchValue = '';
+        activate();
 
-        vm.openNewAuthorDialog = openNewAuthorDialog;
-        vm.dialogType = '';
-        vm.author = {};
-        initAuthor();
+        function activate() {
+            setAuthors();
+            vm.authorSearchValue = '';
 
-        vm.createAuthor = createAuthor;
-        vm.updateAuthor = updateAuthor;
+            vm.openNewAuthorDialog = openNewAuthorDialog;
+            vm.dialogType = '';
+            vm.author = {};
+            initAuthor();
 
-        $window.$("#dialog").dialog({
-            autoOpen: false,
-            height: 400,
-            width: 350,
-            modal: true
-        });
+            vm.createAuthor = createAuthor;
+            vm.updateAuthor = updateAuthor;
+
+            $window.$("#dialog").dialog({
+                autoOpen: false,
+                height: 400,
+                width: 350,
+                modal: true
+            });
+        }
 
         function openNewAuthorDialog() {
             vm.dialogType = 'ADD';

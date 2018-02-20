@@ -22,7 +22,7 @@ angular
 
             vm.createBook = createBook;
 
-            $window.$("#dialog").dialog({
+            $window.$("#dialogBook").dialog({
                 autoOpen: false,
                 height: 450,
                 width: 350,
@@ -31,15 +31,18 @@ angular
         }
 
         function createBook() {
-            dataService.createBook(vm.book);
-            $window.$("#dialog").dialog("close");
+            var newBookId = dataService.createBook(vm.book);
+            if (vm.book.authorId) {
+                dataService.subscribeBookAndAuthor(vm.book.authorId, newBookId)
+            }
+            $window.$("#dialogBook").dialog("close");
             setBooks();
         }
 
         function openNewBookDialog() {
             vm.dialogType = 'ADD';
             initBook();
-            $window.$("#dialog").dialog("open");
+            $window.$("#dialogBook").dialog("open");
         }
 
         function setBooks() {

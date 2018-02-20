@@ -29,6 +29,7 @@ angular
             _.merge(newAuthor, author);
             newAuthor.id = $localStorage.authors.length;
             $localStorage.authors.push(newAuthor);
+            return newAuthor.id;
         }
 
         function deleteAuthor(id) {
@@ -36,10 +37,21 @@ angular
         }
 
         function updateAuthor(id, data) {
+            indexingBooksOfAuthor(data);
             $localStorage.authors[id] = data;
         }
 
         function initCheckAuthorStorage() {
-            $localStorage.authors = $localStorage.authors || [];
+            $localStorage.authors = $localStorage.authors || [null];
+        }
+
+        function indexingBooksOfAuthor(author) {
+            var indxBooks = [];
+            author.books.forEach(function (value) {
+                if(!_.isNull(value) && !_.isUndefined(value) && _.isNumber(value)){
+                    indxBooks.push(value);
+                }
+            });
+            author.books = indxBooks;
         }
     });

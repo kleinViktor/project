@@ -2,7 +2,11 @@
 
 //***************************** our view model presenter
 angular
-    .module('myApp.Authors', ['myApp.services', 'directives.auth.add.edit', 'directives.auth.item'])
+    .module('myApp.Authors', [
+        'myApp.services',
+        'directives.auth.add.edit',
+        'directives.auth.item',
+        'directives.common.delete'])
     .controller('authorsCtrl', function ($window, $rootScope, dataService) {
         var vm = this;
 
@@ -19,6 +23,12 @@ angular
 
             vm.createAuthor = createAuthor;
             vm.updateAuthor = updateAuthor;
+
+            vm.actCb = actCb;
+            vm.yesCb = yesCb;
+            vm.modHd = modHd;
+
+            vm.setAuthors = setAuthors;
 
             $window.$("#dialog").dialog({
                 autoOpen: false,
@@ -66,6 +76,19 @@ angular
             dataService.updateAuthor(vm.author.id, vm.author)
             $window.$("#dialog").dialog("close");
             setAuthors();
+        }
+
+        function actCb() {
+            $window.$("#dialog").dialog("close");
+        }
+
+        function yesCb() {
+            dataService.deleteAuthor(vm.author.id);
+            setAuthors();
+        }
+
+        function modHd() {
+            return 'Delete author ' + vm.author.name + '?';
         }
 
         function setAuthors() {

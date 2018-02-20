@@ -15,7 +15,7 @@ angular
         return service;
 
         function initCheckBookStorage() {
-            $localStorage.books = $localStorage.books || [];
+            $localStorage.books = $localStorage.books || [null];
         }
 
         function getAllBooks() {
@@ -24,7 +24,10 @@ angular
 
         function getBook(id) {
             return _.find($localStorage.books, function (i) {
-                return i.id === id;
+                if (!_.isNull(i)) {
+                    return i.id === id;
+                }
+                return false;
             });
         }
 
@@ -33,6 +36,7 @@ angular
             _.merge(newBook, book);
             newBook.id = $localStorage.books.length;
             $localStorage.books.push(newBook);
+            return newBook.id;
         }
 
         function deleteBook(id) {

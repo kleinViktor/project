@@ -11,8 +11,14 @@
     </div>
 </nav>
 <div ng-repeat="ath in authCtrl.authors | filter:authCtrl.authorSearchValue">
-    <author-item author="ath"></author-item>
+    <author-item author="ath" up-list="authCtrl.setAuthors"></author-item>
 </div>
 <div class="" id="dialog">
     <add-edit-author ng-if="authCtrl.dialogType === 'ADD' || authCtrl.dialogType === 'EDIT'"></add-edit-author>
+    <delete-modal
+            ng-if="authCtrl.dialogType === 'DELETE'"
+            modal-header="authCtrl.modHd()"
+            yes-call-back="authCtrl.yesCb"
+            action-call-back="authCtrl.actCb">
+    </delete-modal>
 </div>

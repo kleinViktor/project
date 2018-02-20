@@ -6,7 +6,8 @@ angular
         return {
             restrict: 'E',
             scope: {
-                author: "="
+                author: '=',
+                upList: '='
             },
             bindController: true,
             templateUrl: 'directives/views/authorItem.html',
@@ -18,8 +19,25 @@ angular
                     })
                 }
 
-                $scope.Delete = function () {
-                    dataService.deleteAuthor($scope.author.id);
+                $scope.openDeleteModal = function () {
+                    $rootScope.$broadcast('OPEN_MODAL', {
+                        dialogType: 'DELETE',
+                        author: $scope.author
+                    });
+                }
+
+                $scope.addNewBookToAuthor = function () {
+
+                }
+
+                $scope.books = [];
+                $scope.author.books.forEach(function (id) {
+                    $scope.books.push(dataService.getBook(id));
+                });
+                
+                $scope.unsubscribeBook = function (bookID) {
+                    dataService.unsubscribeBookAndAuthor($scope.author.id, bookID);
+                    $scope.upList();
                 }
             }
         };

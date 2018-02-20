@@ -8,7 +8,8 @@ angular
     .factory('dataService', function (bookService, authorService) {
         var service = {
             initStorage: initStorage,
-            mergBookAndAuthorIDs: mergBookAndAuthorIDs,
+            subscribeBookAndAuthor: subscribeBookAndAuthor,
+            unsubscribeBookAndAuthor: unsubscribeBookAndAuthor,
 
             createAuthor: authorService.createAuthor,
             updateAuthor: authorService.updateAuthor,
@@ -26,36 +27,54 @@ angular
             getAllBooks: getAllBooks
         };
 
-        var BOOKS = service.getAllBooks();
-        var AUTHORS = service.getAllAuthors();
+        var BOOKS = service.getAllBooks;
+        var AUTHORS = service.getAllAuthors;
 
         return service;
+
 // GENERAL methods
         function initStorage() {
             authorService.initCheckAuthorStorage();
             bookService.initCheckBookStorage();
         }
 
-        function mergBookAndAuthorIDs(authorID, bookID) {
+        function subscribeBookAndAuthor(authorID, bookID) {
+            var BOOKS = service.getAllBooks();
+            var AUTHORS = service.getAllAuthors();
 
-            AUTHORS.forEach(function (item) {
-                if (item.id === authorID) {
-                    item.books.push(bookID);
-                }
-            });
+            var upAuthor = AUTHORS[authorID];
+            upAuthor.books.push(bookID);
+            service.updateAuthor(authorID, upAuthor);
 
-            BOOKS.forEach(function (item) {
-                if (item.id === bookID) {
-                    item.author = authorID;
-                }
-            });
+            var upBook = BOOKS[bookID];
+            upBook.authorId = authorID;
+            service.updateBook(bookID, upBook);
         }
+
+        function unsubscribeBookAndAuthor(authorID, bookID) {
+            var BOOKS = service.getAllBooks();
+            var AUTHORS = service.getAllAuthors();
+
+            AUTHORS[authorID].books.forEach(function (book, i) {
+                if (book === bookID) {
+                    var upAuthor = AUTHORS[authorID];
+                    upAuthor.books[i] = null;
+                    service.updateAuthor(authorID, upAuthor);
+                }
+            });
+
+            var upBook = BOOKS[bookID];
+            upBook.authorId = 0;
+            service.updateBook(bookID, upBook)
+        }
+
 // AUTHORS methods
         function getAllAuthors() {
             return _.cloneDeep(authorService.getAllAuthors());
         }
 
         function searchAuthor(param) {
+            var AUTHORS = service.getAllAuthors();
             var searchReg;
 
             if (param === '') {
@@ -72,12 +91,14 @@ angular
                 }
             });
         }
- // BOOKS methods
+
+        // BOOKS methods
         function getAllBooks() {
             return _.cloneDeep(bookService.getAllBooks());
         }
 
         function searchBook(param) {
+            var BOOKS = service.getAllBooks();
             var searchReg;
 
             if (param === '') {
@@ -90,8 +111,9 @@ angular
         }
 
         function getAllBooksByID(id) {
+            var BOOKS = service.getAllBooks();
             return BOOKS.filter(function (item) {
-                return item.author === id;
+                return item.authorId === id;
             });
         }
     });

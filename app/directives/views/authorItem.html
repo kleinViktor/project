@@ -2,8 +2,17 @@
     <h5 ng-click="modalOpen">{{author.name}} {{author.sname}}</h5>
     <h6 ng-if="author.date">Date: {{author.date}}</h6>
     <h6>ID:{{author.id}}</h6>
+    <div>
+        <ul>
+            <li ng-repeat="book in books">
+                {{book.name}}
+                <button ng-click="unsubscribeBook(book.id)">Unsubscribe Book</button>
+            </li>
+        </ul>
+    </div>
     <dvi>
         <button ng-click="openEditModal()">EDIT</button>
-        <button ng-click="Delete()">DELETE</button>
+        <button ng-click="openDeleteModal()">DELETE</button>
+        <button ng-click="addNewBookToAuthor()">ADD BOOK</button>
     </dvi>
 </div>

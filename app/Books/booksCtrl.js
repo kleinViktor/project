@@ -20,6 +20,7 @@ angular
             vm.book = {};
             initBook();
 
+            vm.authors = dataService.getAllAuthors(true);
             vm.createBook = createBook;
 
             $window.$("#dialogBook").dialog({
@@ -51,9 +52,9 @@ angular
 
         function initBook() {
             vm.book.name = '';
-            vm.book.style = '';
+            vm.book.style = 'NONE';
             vm.book.pages = 0;
-            vm.book.authorId = 0;
+            vm.book.authorId = "0";
         }
     });
 

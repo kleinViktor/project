@@ -4,15 +4,23 @@
     <h6>ID:{{author.id}}</h6>
     <div>
         <ul>
-            <li ng-repeat="book in books">
-                {{book.name}}
-                <button ng-click="unsubscribeBook(book.id)">Unsubscribe Book</button>
+            <li ng-repeat="sbook in subBooks">
+                {{sbook.name}}
+                <button ng-click="unsubscribeBook(sbook.id)">Unsubscribe Book</button>
             </li>
         </ul>
+        <p ng-show="unSubBooks.length > 0">
+            <select ng-model="selectUnSubscribeBook">
+                <option ng-repeat="usbook in unSubBooks" value="{{usbook.id}}">
+                    {{usbook.name}}
+                </option>
+            </select>
+            <button ng-click="subscribeBook()">Add exist book</button>
+        </p>
     </div>
-    <dvi>
+    <div>
         <button ng-click="openEditModal()">EDIT</button>
         <button ng-click="openDeleteModal()">DELETE</button>
         <button ng-click="addNewBookToAuthor()">ADD BOOK</button>
-    </dvi>
+    </div>
 </div>

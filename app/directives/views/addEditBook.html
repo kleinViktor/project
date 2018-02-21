@@ -4,7 +4,9 @@
             <input placeholder="name" ng-model="bksCtrl.book.name">
         </p>
         <p>
-            <select placeholder="style" ng-model="bksCtrl.book.style">
+            <select
+                    placeholder="style"
+                    ng-model="bksCtrl.book.style">
                 <option value="NONE">NONE</option>
                 <option ng-repeat="style in bksCtrl.booksStyles" value="{{style.styleName}}">
                     {{style.styleName}}
@@ -15,7 +17,15 @@
             <input type="number" placeholder="pages" ng-model="bksCtrl.book.pages">
         </p>
         <p>
-            <input type="number" placeholder="author ID" ng-model="bksCtrl.book.authorId">
+            <!--<input type="number" placeholder="author ID" ng-model="bksCtrl.book.authorId">-->
+            <select ng-model="bksCtrl.book.authorId">
+                <option value="0">No author</option>
+                <option
+                        ng-repeat="author in bksCtrl.authors"
+                        value="{{author.id}}">
+                    {{author.name}} {{author.sname}}
+                </option>
+            </select>
         </p>
         <button class="waves-effect waves-light btn"
                 ng-if="bksCtrl.dialogType === 'ADD'"

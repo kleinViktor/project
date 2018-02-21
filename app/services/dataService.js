@@ -42,13 +42,17 @@ angular
             var BOOKS = service.getAllBooks();
             var AUTHORS = service.getAllAuthors();
 
-            var upAuthor = AUTHORS[authorID];
-            upAuthor.books.push(bookID);
-            service.updateAuthor(authorID, upAuthor);
+            if (authorID != 0) {
+                var upAuthor = AUTHORS[authorID];
+                upAuthor.books.push(bookID);
+                service.updateAuthor(authorID, upAuthor);
+            }
 
-            var upBook = BOOKS[bookID];
-            upBook.authorId = authorID;
-            service.updateBook(bookID, upBook);
+            if (bookID != 0) {
+                var upBook = BOOKS[bookID];
+                upBook.authorId = authorID;
+                service.updateBook(bookID, upBook);
+            }
         }
 
         function unsubscribeBookAndAuthor(authorID, bookID) {
@@ -69,8 +73,12 @@ angular
         }
 
 // AUTHORS methods
-        function getAllAuthors() {
-            return _.cloneDeep(authorService.getAllAuthors());
+        function getAllAuthors(clean) {
+            var arr = _.cloneDeep(authorService.getAllAuthors());
+            if (clean) {
+                arr.shift();
+            }
+            return arr;
         }
 
         function searchAuthor(param) {
@@ -93,8 +101,12 @@ angular
         }
 
         // BOOKS methods
-        function getAllBooks() {
-            return _.cloneDeep(bookService.getAllBooks());
+        function getAllBooks(clean) {
+            var arr = _.cloneDeep(bookService.getAllBooks());
+            if (clean) {
+                arr.shift();
+            }
+            return arr;
         }
 
         function searchBook(param) {

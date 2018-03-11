@@ -15,16 +15,16 @@ angular
                     $rootScope.$broadcast('OPEN_MODAL', {
                         dialogType: 'EDIT',
                         book: $scope.book
-                    })
-                }
+                    });
+                };
 
-                $scope.Delete = function () {
+                $scope.delete = function () {
                     //dataService.deleteBook($scope.book.id);
                     $rootScope.$broadcast('OPEN_MODAL', {
                         dialogType: 'DELETE',
                         book: $scope.book
-                    })
-                }
+                    });
+                };
             }
         };
     });

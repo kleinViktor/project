@@ -26,10 +26,6 @@ angular
                     });
                 }
 
-                $scope.addNewBookToAuthor = function () {
-
-                }
-
                 $scope.subBooks = [];
 
                 $scope.author.books.forEach(function (id) {

@@ -28,7 +28,7 @@
             </select>
         </p>
         <button class="waves-effect waves-light btn"
-                ng-if="bksCtrl.dialogType === 'ADD'"
+                ng-if="bksCtrl.dialogType === 'ADD' && bksCtrl.book.name"
                 ng-click="bksCtrl.createBook()">
             Create
         </button>

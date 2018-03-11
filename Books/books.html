@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper row">
         <div class="input-field col s9">
-            <input type="text" placeholder="Please start entering book name...">
+            <input type="text" placeholder="Please start entering book name..." ng-model="bksCtrl.bookSearchValue">
         </div>
         <ul id="nav-mobile" class="right hide-on-med-and-down col s3">
             <li>
@@ -13,11 +13,17 @@
         </ul>
     </div>
 </nav>
-<div ng-repeat="bk in bksCtrl.books">
+<div ng-repeat="bk in bksCtrl.books | filter:bksCtrl.bookSearchValue">
     <book-item book="bk"></book-item>
 </div>
 <div class="" id="dialogBook">
     <add-edit-book ng-if="bksCtrl.dialogType === 'ADD' || bksCtrl.dialogType === 'EDIT'"></add-edit-book>
+    <delete-modal
+            ng-if="bksCtrl.dialogType === 'DELETE'"
+            modal-header="bksCtrl.modHd()"
+            yes-call-back="bksCtrl.yesCb"
+            action-call-back="bksCtrl.actCb">
+    </delete-modal>
 </div>
 
 

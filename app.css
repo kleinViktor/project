@@ -158,3 +158,34 @@ select {
 body {
     background-color: #0d47a1;
 }
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.item {
+    border: 5px solid white;
+    margin: 10px;
+    border-radius: 20px;
+    padding: 15px;
+    color: #dddddd;
+    height: inherit;
+}
+
+.item button {
+
+}
+
+.controlbtn{
+    width: 50%;
+    height: 25px;
+}
+
+.itemcnt {
+    height: 80px;
+    width: 50%;
+}

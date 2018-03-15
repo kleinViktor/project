@@ -20,7 +20,10 @@ angular
 
         function getAuthor(id) {
             return _.find($localStorage.authors, function (i) {
-                return i.id === id;
+                if(_.isNull(i) || _.isUndefined(i)){
+                    return false
+                }
+                return i.id === Number(id);
             });
         }
 

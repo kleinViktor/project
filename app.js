@@ -8,16 +8,28 @@ angular.module('myApp', [
     'myApp.Authors',
     'myApp.Books'
 ]).config(function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise('/authors');
+    $urlRouterProvider.otherwise('/authors/list');
 
     $stateProvider.state('authors', {
         url: '/authors',
+        abstract: true
+    });
+
+    $stateProvider.state('authors.list', {
+        url: '/list',
         templateUrl: 'Authors/authors.html',
         controller: 'authorsCtrl',
         controllerAs: 'authCtrl',
         ncyBreadcrumb: {
             label: 'authors'
         }
+    });
+
+    $stateProvider.state('authors.edit', {
+        url: '/edit/{authorId}',
+        templateUrl: 'Authors/authors.html',
+        controller: 'authorsCtrl',
+        controllerAs: 'authCtrl'
     });
 
     $stateProvider.state('books', {

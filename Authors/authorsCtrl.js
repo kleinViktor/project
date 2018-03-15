@@ -7,7 +7,7 @@ angular
         'directives.auth.add.edit',
         'directives.auth.item',
         'directives.common.delete'])
-    .controller('authorsCtrl', function ($window, $rootScope, dataService) {
+    .controller('authorsCtrl', function ($window, $rootScope, dataService, $stateParams, $state) {
         var vm = this;
 
         activate();
@@ -36,6 +36,13 @@ angular
                 width: 350,
                 modal: true
             });
+
+            if ($stateParams.authorId && Number($stateParams.authorId) !== 0) {
+                modalParser(null, {
+                    dialogType: 'EDIT',
+                    author: dataService.getAuthor($stateParams.authorId)
+                })
+            }
         }
 
         function openNewAuthorDialog() {
@@ -75,7 +82,7 @@ angular
         function updateAuthor() {
             dataService.updateAuthor(vm.author.id, vm.author)
             $window.$("#dialog").dialog("close");
-            setAuthors();
+            $state.go('authors.list');
         }
 
         function actCb() {

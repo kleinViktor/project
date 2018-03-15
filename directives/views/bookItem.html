@@ -4,5 +4,6 @@
     <dvi>
         <button ng-click="openEditModal()">EDIT</button>
         <button ng-click="delete()">DELETE</button>
+        <button ng-if="book.authorId" ui-sref="authors.edit({authorId:book.authorId})">Edit Author</button>
     </dvi>
 </div>
